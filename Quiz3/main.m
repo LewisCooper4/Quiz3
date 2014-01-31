@@ -66,7 +66,8 @@ int main(int argc, char *argv[])
     //     iterate through the dictionary using fast enumeration
     
     for (NSString *key in dict) {
-        int sweet = [dict objectForKey:key];
+        NSNumber *num = [dict objectForKey:key];
+        int sweet = [num intValue];
         if (sweet < 4) {
             NSLog(@"Not Sweet");
         }
@@ -93,14 +94,16 @@ int main(int argc, char *argv[])
     DayOfWeek *currentDay;
     
     // #18 make a block
-    void ^myFirstBlock; {
+    void (^myFirstBlock)(void) = ^void(void){
         NSLog(@"Hello World");
-    }
-    myFirstBlock;
+    };
+    myFirstBlock();
     
     // #19 create a block to accept nsstring
-    void ^mySecondBlock (NSString *) (NSString *)arg; {
-        
-    }
+    void (^mySecondBlock) (NSString *) = ^void (NSString *arg) {
+        NSLog(@"%@", arg);
+    };
+    mySecondBlock(@"Hello");
+    mySecondBlock(@"World");
     
 }
